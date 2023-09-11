@@ -1,8 +1,16 @@
-import LoginPage from "./login/loginPage"
+"use state";
+
+import Link from 'next/link';
 export default function Home() {
   return (
     <main>
-      <LoginPage></LoginPage>
-    </main>
+       <Link href="/login">
+       Logga in
+      </Link>
+      <Link href = "/registration">
+        Registrera dig
+      </Link>
+     
+      </main>
   )
 }
