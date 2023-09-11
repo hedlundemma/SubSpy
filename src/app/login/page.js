@@ -1,6 +1,7 @@
 "use client"
 import { useState } from 'react';
 import { supabase } from '../../../supabase';
+import Link from 'next/link';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -42,6 +43,8 @@ function LoginPage() {
           />
         </div>
         <button type="submit">Login</button>
+
+        <h3>Ny användare?<Link href= "/registration">Skapa konto här</Link></h3>
       </form>
     </div>
   );
