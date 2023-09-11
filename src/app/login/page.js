@@ -1,15 +1,28 @@
 "use client"
 import { useState } from 'react';
 import { supabase } from '../../../supabase';
-import Link from 'next/link';
 
-export default function LoginPage() {
+function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    supabase.auth.signIn({ email, password });
+    try {
+      let { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      console.log('Logged in:', data);
+    } catch (error) {
+      console.error('Login error:', error.message);
+    }
   };
 
   return (
@@ -18,11 +31,7 @@ export default function LoginPage() {
       <form onSubmit={handleLogin}>
         <div>
           <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div>
           <label>Password:</label>
@@ -33,10 +42,9 @@ export default function LoginPage() {
           />
         </div>
         <button type="submit">Login</button>
-        <h3> Ny användare? <Link href ="/registration">Skapa konto här</Link></h3>
       </form>
     </div>
   );
 }
 
-
+export default LoginPage;
