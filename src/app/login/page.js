@@ -8,7 +8,7 @@ import styled from "styled-components";
 
 const Main = styled.div`
   background-color: white;
-  height: 1000px;
+  height: 850px;
 `;
 
 const Section = styled.section`
