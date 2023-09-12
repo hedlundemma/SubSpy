@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { supabase } from '../../../supabase';
 import Link from 'next/link';
 import styled from "styled-components";
+import { useRouter } from 'next/navigation'
 
 const Main = styled.div`
   background-color: white;
@@ -22,24 +23,27 @@ const Section = styled.section`
   
 `;
 
+
 function LoginPage() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    
     try {
       let { data, error } = await supabase.auth.signInWithPassword({
         email: email,
         password: password
       });
-
+      
       if (error) {
         throw error;
       }
-
+      
       console.log('Logged in:', data);
+      router.push("/home");
     } catch (error) {
       console.error('Login error:', error.message);
     }
