@@ -10,10 +10,9 @@ const StreamingForm = () => {
     const handleSubmit = async (e) => {
       e.preventDefault();
 
-      const { error } = await supabase
-        .from('subscriptions')
-        .insert({ subscription, monthly_cost, renew_date, user_uuid})
-  
+      const {error } = await supabase
+        .from('Subscriptions')
+        .insert({ subscription:selectedService, monthly_cost:cost, renew_date:startDate, user_uuid:1})
       
     };
   
