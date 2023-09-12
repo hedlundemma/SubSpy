@@ -26,11 +26,11 @@ const Name = styled.h1`
 `;
 
 const LoginBtn = styled(Link)`
-    font-size: 16px;
+    font-size: 12px;
     padding: 8px;
     `;
 const RegisterBtn = styled(Link)`
-    font-size: 16px;
+    font-size: 12px;
     border-radius: 50px;
     background-color: black;
     color: white;
