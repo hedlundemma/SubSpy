@@ -13,12 +13,55 @@ const Main = styled.div`
 `;
 
 const Section = styled.section`
-  height: 540px;
-  padding: 16px;
   display: flex;
   flex-direction: column;
-  
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 32px;
+  gap: 32px;
+  color: black;
+  height: 100vh;
+  form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-bottom: 24px;
+    border-bottom: 3px solid #EDEDED;
+  }
+  form input{
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background-color: #EDEDED;
+    box-sizing: border-box;
+    padding-left: 16px;
+  }
+  form button{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 8px 0;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    height: 40px;
+  }
+  h1{
+    font-weight: 400;
+  }
+  h3{
+    font-size: 16;
+    font-weight: 200;
+    width: 100%;
+    text-align: center;
+  }
+  h3 a{
+    border-bottom: 1px solid black;
+  }
 `;
+
 
 export default function Register() {
   const router = useRouter();
@@ -49,33 +92,34 @@ export default function Register() {
     <Main>
       <Navbar></Navbar>
       <Section>
-    <div>
-      <h2>Registrera dig</h2>
+      <h1>Registrera dig</h1>
       <form onSubmit={handleRegister}>
         <div>
-          <label>Email:</label>
           <input
+            placeholder='Email adress'
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div>
-          <label>Lösenord:</label>
           <input
+            placeholder='Lösenord'
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <h3> Jag godkänner <Link href ="/userterms">Användarvillkoren</Link></h3>
+        <div>
+          <input type = "checkbox"/>
+          <h3> Jag godkänner <Link href ="/userterms">Användarvillkoren</Link></h3>
+        </div>
         <button type="submit">Skapa konto</button>
       </form>
 
       <h3>Har du redan ett konto? <Link href="/login">
        Logga in här
       </Link></h3>
-    </div>
     </Section>
     <Footer></Footer>
     </Main>
