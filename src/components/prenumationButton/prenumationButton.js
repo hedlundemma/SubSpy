@@ -9,9 +9,11 @@ width: 270px;
 height: 55px;
 font-size: 18px;
 border-radius: 10px;
-margin-top: 48px;
+cursor: pointer;
+font-weight: 300;
 img{
     margin-right: 20px;
+  
 }
 
 `

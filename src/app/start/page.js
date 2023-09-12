@@ -23,19 +23,39 @@ const Section = styled.section`
 
 const Heading = styled.h2 `
 font-size: 24px;
+font-weight: 300;
+text-align: center;
+margin-top: 64px;
 `
 
-export default function StartPrenumation () {
+const ImageDiv = styled.div `
+display:flex;
+justify-content:center;
+align-items: center;
+margin-top: 48px;
+margin-bottom: 48px;
+`
+
+const ButtonDiv = styled.div `
+display:flex;
+align-items:center;
+justify-content:center;
+`
+export default function Start() {
     return (
         <Main>
             <Navbar></Navbar>
             <Section>
-            <div>
-                <Heading>Lägg till en prenumation för att komma igång</Heading>
+    
+                <Heading>Lägg till en prenumation för att komma igång!</Heading>
+                <ImageDiv>
                 <Logo src = "arrow.svg"></Logo>
-                <PrenumationButton href = "" text = "Lägg till Prenumation"></PrenumationButton>
+                </ImageDiv>
+                <ButtonDiv>
+                <PrenumationButton href = "" text = "Lägg till prenumation"></PrenumationButton>
+                </ButtonDiv>
             
-            </div>
+            
             </Section>
             <Footer></Footer>
             </Main>
