@@ -2,7 +2,6 @@
 import Navbar from '@/components/navbar/Navbar';
 import Footer from '@/components/footer/Footer';
 import { supabase } from '../../../supabase';
-
 import styled from "styled-components";
 import StreamingForm from '@/components/streamingForm/StreamingForm';
 
@@ -18,7 +17,7 @@ const Section = styled.section`
   height: 525px;
   `
 
-function Prenumation(){
+function Subscription(){
 
 
     return (
@@ -35,4 +34,4 @@ function Prenumation(){
 }
 
 
-export default Prenumation;
+export default Subscription;
