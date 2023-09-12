@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Navbar from '@/components/navbar/Navbar';
 import Footer from '@/components/footer/Footer';
 import styled from "styled-components";
+import { useRouter } from 'next/navigation'
 
 const Main = styled.div`
   background-color: white;
@@ -20,6 +21,7 @@ const Section = styled.section`
 `;
 
 export default function Register() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -27,7 +29,7 @@ export default function Register() {
     e.preventDefault();
 
     try {
-      const { user, error } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
       });
@@ -35,7 +37,8 @@ export default function Register() {
       if (error) {
         console.error('Registration error:', error.message);
       } else {
-        console.log('Registration successful:', user);
+        console.log('Registration successful:', data);
+        router.push("/login");
       }
     } catch (error) {
       console.error('Registration error:', error.message);
