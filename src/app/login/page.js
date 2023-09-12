@@ -95,10 +95,11 @@ function LoginPage() {
       <h1>Logga in</h1>
       <form onSubmit={handleLogin}>
         <div>
-          <input placeholder='Email adress' type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input required placeholder='Email adress' type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div>
           <input
+            required
             placeholder='Lösenord'
             type="password"
             value={password}
