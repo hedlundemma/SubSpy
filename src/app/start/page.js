@@ -52,7 +52,7 @@ export default function Start() {
                 <Logo src = "arrow.svg"></Logo>
                 </ImageDiv>
                 <ButtonDiv>
-                <PrenumationButton href = "" text = "Lägg till prenumation"></PrenumationButton>
+                <PrenumationButton href = "/prenumation" text = "Lägg till prenumation"></PrenumationButton>
                 </ButtonDiv>
             
             
