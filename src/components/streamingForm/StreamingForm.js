@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { supabase } from '../../../supabase';
 
 const StreamingForm = () => {
     const [selectedService, setSelectedService] = useState('');
@@ -11,7 +12,7 @@ const StreamingForm = () => {
 
       const { error } = await supabase
         .from('subscriptions')
-        .insert({ 'vår info': any})
+        .insert({ subscription, monthly_cost, renew_date, user_uuid})
   
       
     };
