@@ -6,10 +6,14 @@ const StreamingForm = () => {
     const [cost, setCost] = useState('');
     const [renewalFrequency, setRenewalFrequency] = useState('monthly');
   
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
+
+      const { error } = await supabase
+        .from('subscriptions')
+        .insert({ 'vår info': any})
   
-      // Handle form submission here, you can send the data to your backend or perform any other action.
+      
     };
   
     return (
