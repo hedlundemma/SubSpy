@@ -107,7 +107,9 @@ export default function Register() {
       <form onSubmit={handleRegister}>
         <div>
           <input
+            required
             placeholder='Email adress'
+            autoComplete='email'
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -115,6 +117,7 @@ export default function Register() {
         </div>
         <div>
           <input
+            required
             placeholder='Lösenord'
             type="password"
             value={password}
@@ -122,7 +125,7 @@ export default function Register() {
           />
         </div>
         <Agreement>
-          <input type = "checkbox"/>
+          <input required type = "checkbox"/>
           <h3> Jag godkänner <Link href ="/userterms">Användarvillkoren</Link></h3>
         </Agreement>
         <button type="submit">Skapa konto</button>
