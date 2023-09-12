@@ -1,18 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '../../../supabase';
+import { useRouter } from 'next/navigation'
 
 const StreamingForm = () => {
+    const router = useRouter();
     const [selectedService, setSelectedService] = useState('');
     const [startDate, setStartDate] = useState('');
     const [cost, setCost] = useState('');
     const [renewalFrequency, setRenewalFrequency] = useState('monthly');
+
+
+    const [user, setUser] = useState(null); 
+    useEffect(() => {
+      const fetchUserData = async () => {
+        try {
+          const { data: { user } } = await supabase.auth.getUser();
+          setUser(user);
+        } catch (error) {
+          console.error('Error fetching user data:', error.message);
+          router.push("/login");
+        }
+      };
+      fetchUserData();
+    }, []);
   
+    console.log(user);
     const handleSubmit = async (e) => {
       e.preventDefault();
 
       const {error } = await supabase
         .from('Subscriptions')
-        .insert({ subscription:selectedService, monthly_cost:cost, renew_date:startDate, user_uuid:1})
+        .insert({ subscription:selectedService, monthly_cost:cost, renew_date:startDate, user_uuid:user.id})
       
     };
   

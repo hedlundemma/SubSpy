@@ -3,6 +3,9 @@ import Footer from '@/components/footer/Footer';
 import Navbar from '@/components/navbar/Navbar';
 import styled from "styled-components";
 import PrenumationButton from '@/components/prenumationButton/prenumationButton';
+import { supabase } from '../../../supabase';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation'
 
 const Main = styled.div`
   background-color: white;
@@ -41,7 +44,27 @@ display:flex;
 align-items:center;
 justify-content:center;
 `
+
+
+
+
+
 export default function Start() {
+  const router = useRouter();
+  const [user, setUser] = useState(null); 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const { data: { user } } = await supabase.auth.getUser();
+        setUser(user);
+      } catch (error) {
+        console.error('Error fetching user data:', error.message);
+        router.push("/login");
+      }
+    };
+    fetchUserData();
+  }, []);
+
     return (
         <Main>
             <Navbar></Navbar>
