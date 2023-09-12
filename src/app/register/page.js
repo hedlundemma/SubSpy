@@ -61,6 +61,17 @@ const Section = styled.section`
     border-bottom: 1px solid black;
   }
 `;
+const Agreement = styled.div`
+  display: flex;
+  align-items: center;
+  
+  input[type="checkbox"] {
+    width: 16px; 
+    height: 16px; 
+    margin-right: 8px; 
+  }
+`;
+
 
 
 export default function Register() {
@@ -110,10 +121,10 @@ export default function Register() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div>
+        <Agreement>
           <input type = "checkbox"/>
           <h3> Jag godkänner <Link href ="/userterms">Användarvillkoren</Link></h3>
-        </div>
+        </Agreement>
         <button type="submit">Skapa konto</button>
       </form>
 
