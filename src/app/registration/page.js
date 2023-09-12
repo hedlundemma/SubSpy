@@ -2,6 +2,25 @@
 import { useState } from 'react';
 import { supabase } from '../../../supabase';
 import Link from 'next/link';
+import Navbar from '@/components/navbar/Navbar';
+import Footer from '@/components/footer/Footer';
+import styled from "styled-components";
+
+const Main = styled.div`
+  background-color: white;
+  height: 1000px;
+`;
+
+const Section = styled.section`
+
+  height: 540px;
+  
+  padding: 16px;
+ 
+  display: flex;
+  flex-direction: column;
+  
+`;
 
 export default function Register() {
   const [email, setEmail] = useState('');
@@ -27,6 +46,9 @@ export default function Register() {
   };
 
   return (
+    <Main>
+      <Navbar></Navbar>
+      <Section>
     <div>
       <h2>Registrera dig</h2>
       <form onSubmit={handleRegister}>
@@ -54,5 +76,8 @@ export default function Register() {
        Logga in här
       </Link></h3>
     </div>
+    </Section>
+    <Footer></Footer>
+    </Main>
   );
 }
