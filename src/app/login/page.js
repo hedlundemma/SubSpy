@@ -1,7 +1,26 @@
 "use client"
+import Navbar from '@/components/navbar/Navbar';
+import Footer from '@/components/footer/Footer';
 import { useState } from 'react';
 import { supabase } from '../../../supabase';
 import Link from 'next/link';
+import styled from "styled-components";
+
+const Main = styled.div`
+  background-color: white;
+  height: 1000px;
+`;
+
+const Section = styled.section`
+
+  height: 540px;
+  
+  padding: 16px;
+ 
+  display: flex;
+  flex-direction: column;
+  
+`;
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -27,6 +46,9 @@ function LoginPage() {
   };
 
   return (
+    <Main>
+    <Navbar></Navbar>
+    <Section>
     <div>
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
@@ -47,6 +69,9 @@ function LoginPage() {
         <h3>Ny användare?<Link href= "/registration">Skapa konto här</Link></h3>
       </form>
     </div>
+    </Section>
+    <Footer></Footer>
+    </Main>
   );
 }
 

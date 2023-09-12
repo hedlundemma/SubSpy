@@ -47,7 +47,7 @@ export default function Navbar(){
             </HeaderSecton>
             <HeaderSecton>
                 <LoginBtn href="/login">Logga in</LoginBtn>
-                <RegisterBtn href="/register">Registrera dig</RegisterBtn>
+                <RegisterBtn href="/registration">Registrera dig</RegisterBtn>
             </HeaderSecton>
         </Header>
     </>

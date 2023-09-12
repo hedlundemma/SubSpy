@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Navbar from '@/components/navbar/Navbar';
-import Footer from '@/components/footer/footer';
+import Footer from '@/components/footer/Footer';
 import styled from "styled-components";
 
 
