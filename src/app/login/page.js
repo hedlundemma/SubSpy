@@ -82,7 +82,7 @@ function LoginPage() {
       }
       
       console.log('Logged in:', data);
-      router.push("/home");
+      router.push("/start");
     } catch (error) {
       console.error('Login error:', error.message);
     }
@@ -108,7 +108,7 @@ function LoginPage() {
         <button type="submit">Logga in</button>
 
         </form>
-        <h3>Ny användare? <Link href= "/registration">Skapa konto här</Link></h3>
+        <h3>Ny användare? <Link href= "/register">Skapa konto här</Link></h3>
     </Section>
     <Footer></Footer>
     </Main>
