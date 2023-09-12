@@ -95,19 +95,12 @@ function LoginPage() {
       <h1>Logga in</h1>
       <form onSubmit={handleLogin}>
         <div>
-          <input required placeholder='Email adress' type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input type="email" autoComplete='email' required placeholder='Email adress' value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div>
-          <input
-            required
-            placeholder='Lösenord'
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <input type="password" required placeholder='Lösenord' value={password} onChange={(e) => setPassword(e.target.value)}/>
         </div>
         <button type="submit">Logga in</button>
-
         </form>
         <h3>Ny användare? <Link href= "/register">Skapa konto här</Link></h3>
     </Section>

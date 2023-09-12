@@ -109,6 +109,7 @@ export default function Register() {
           <input
             required
             placeholder='Email adress'
+            autoComplete='email'
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
