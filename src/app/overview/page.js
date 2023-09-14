@@ -1,5 +1,5 @@
 "use client";
-import Footer from "@/components/footer/footer";
+import Footer from "@/components/footer/Footer";
 import UserNavbar from "@/components/userNavbar/userNavbar";
 import { supabase } from "../../../supabase";
 import styled from "styled-components";

@@ -1,6 +1,6 @@
 "use client";
 import UserNavbar from "@/components/userNavbar/userNavbar";
-import Footer from "@/components/footer/footer";
+import Footer from "@/components/footer/Footer";
 import { supabase } from "../../../supabase";
 import styled from "styled-components";
 import StreamingForm from "@/components/streamingForm/StreamingForm";
