@@ -2,6 +2,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 
+
 const FooterSection = styled.footer`
   background-color: #000000;
   display: flex;
