@@ -1,6 +1,6 @@
 "use client";
 import Footer from "@/components/footer/Footer";
-import Navbar from "@/components/navbar/Navbar";
+import UserNavbar from "@/components/userNavbar/userNavbar";
 import { supabase } from "../../../supabase";
 import styled from "styled-components";
 import PrenumationButton from "@/components/prenumationButton/prenumationButton";
@@ -20,7 +20,7 @@ const Section = styled.section`
 function Overview() {
   return (
     <Main>
-      <Navbar></Navbar>
+      <UserNavbar></UserNavbar>
       <Section>
         <PrenumationButton
           href="/subscription"

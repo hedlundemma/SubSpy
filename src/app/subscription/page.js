@@ -1,5 +1,5 @@
 "use client";
-import Navbar from "@/components/navbar/Navbar";
+import UserNavbar from "@/components/userNavbar/userNavbar";
 import Footer from "@/components/footer/Footer";
 import { supabase } from "../../../supabase";
 import styled from "styled-components";
@@ -27,7 +27,7 @@ const Heading = styled.h2`
 function Subscription() {
   return (
     <Main>
-      <Navbar></Navbar>
+      <UserNavbar></UserNavbar>
       <Section>
         <Heading>Lägg till prenumeration</Heading>
         <StreamingForm></StreamingForm>

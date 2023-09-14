@@ -3,6 +3,7 @@ import { supabase } from "../../../supabase";
 import { useRouter } from "next/navigation";
 import styled from "styled-components";
 import { Days_One } from "next/font/google";
+import Link from "next/link";
 
 const Section = styled.section`
   display: flex;
@@ -43,6 +44,15 @@ const Section = styled.section`
     font-weight: 200;
     width: 100%;
   }
+`;
+
+const SubscrptionBtn = styled(Link)`
+  font-size: 18px;
+  border-radius: 50px;
+  background-color: black;
+  color: white;
+  padding: 12px 16px;
+  text-align: center;
 `;
 
 const StreamingForm = () => {
@@ -174,9 +184,9 @@ const StreamingForm = () => {
           </select>
         </label>
 
-        <a href="/overview">
-          <button type="submit">Lägg till en prenumation</button>
-        </a>
+        <SubscrptionBtn href="/overview">
+          Lägg till prenumeration
+        </SubscrptionBtn>
       </form>
     </Section>
   );
