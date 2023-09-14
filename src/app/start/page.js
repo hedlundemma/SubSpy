@@ -6,6 +6,7 @@ import PrenumationButton from "@/components/prenumationButton/prenumationButton"
 import { supabase } from "../../../supabase";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import SubscriptionCard from "@/components/SubscriptionCard";
 
 const Main = styled.div`
   background-color: white;
@@ -46,23 +47,23 @@ const ButtonDiv = styled.div`
 
 export default function Start() {
   const router = useRouter();
+  const [subscriptions, setSubscriptions] = useState("");
+  const [user, setUser] = useState("");
+
   useEffect(() => {
     const checkUserSession = async () => {
       const session = supabase.auth.getSession();
       if (session) {
-        console.log((await session).data);
         if ((await session).data.session == null) {
           router.push("/login");
         }
       }
     };
-    checkUserSession();
   }, [router]);
 
   const handleLogout = async () => {
     try {
       const { error } = await supabase.auth.signOut();
-
       if (error) {
         throw error;
       }
@@ -71,10 +72,40 @@ export default function Start() {
       console.error("Error logging out:", error.message);
     }
   };
+
+
+  useEffect(() => {
+    const fetchSubscriptions = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      const { data } = await supabase
+        .from("Subscriptions")
+        .select()
+        .eq("user_uuid", user.id);
+      setSubscriptions(data);
+    };
+    fetchSubscriptions();
+  }, [user]);
+  console.log(subscriptions);
+
+  let cardsComponent = null;
+
+  if (Array.isArray(subscriptions)) {
+    cardsComponent = subscriptions.map((subscription) => (
+      <SubscriptionCard
+        key={subscription.id}
+        cost={subscription.monthly_cost}
+        name={subscription.subscription}
+      />
+    ));
+  }
+
   return (
     <Main>
       <UserNavbar></UserNavbar>
       <Section>
+        <div>{cardsComponent}</div>
         <Heading>Lägg till en prenumation för att komma igång!</Heading>
         <ImageDiv>
           <Logo src="arrow.svg"></Logo>
