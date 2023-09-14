@@ -8,8 +8,6 @@ display: flex;
 flex-direction: column;
 justify-content: flex-start;
 align-items: flex-start;
-padding: 30px;
-gap: 32px;
 color: black;
 height: 100vh;
 form{
@@ -27,7 +25,7 @@ form input{
   border: none;
   background-color: #EDEDED;
   box-sizing: border-box;
-  padding-left: 16px;
+  
 }
 form button{
   box-sizing: border-box;

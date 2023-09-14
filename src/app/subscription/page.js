@@ -15,13 +15,15 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   height: 525px;
+  padding:24px;
   `
 
   const Heading = styled.h2`
   font-size: 24px;
   font-weight: 400;
   margin-top: 52px;
-  margin-left: 27px;
+  padding-bottom: 24px;
+ 
   `
 
 function Subscription(){
