@@ -53,11 +53,18 @@ const StreamingForm = () => {
     const [cost, setCost] = useState('');
     const [renewalFrequency, setRenewalFrequency] = useState('monthly');
 
+    //array containing the options for streaming-services 
     const streamingServiceOptions = [
         { value: '', label: 'Välj en tjänst' },
         { value: 'netflix', label: 'Netflix' },
         { value: 'disneyPlus', label: 'Disney+' },
-        // Add more options as needed
+    
+      ];
+    // array containing the options for renewal-frequenxy
+      const renewalFrequencyOptions = [
+        { value: 'monthly', label: 'Månadsvis' },
+        { value: 'yearly', label: 'Årligen' },
+    
       ];
 
 
@@ -94,6 +101,7 @@ const StreamingForm = () => {
             value={selectedService}
             onChange={(e) => setSelectedService(e.target.value)}
           >
+            {/* displaying the values from the array */}
           {streamingServiceOptions.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
@@ -126,10 +134,14 @@ const StreamingForm = () => {
             value={renewalFrequency}
             onChange={(e) => setRenewalFrequency(e.target.value)}
           >
-            <option value="monthly">Månadsvis</option>
-            <option value="yearly">Årligen</option>
+              {/* displaying the values from the array */}
+          {renewalFrequencyOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
           </select>
-        </label>
+          </label>
   
         <button type="submit">Lägg till en prenumation</button>
       </form>
