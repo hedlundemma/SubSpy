@@ -1,10 +1,9 @@
-"use client"
+"use client";
 
-import Link from 'next/link';
-import Navbar from '@/components/navbar/Navbar';
-import Footer from '@/components/footer/Footer';
+import Link from "next/link";
+import Navbar from "@/components/navbar/Navbar";
+import Footer from "@/components/footer/footer";
 import styled from "styled-components";
-
 
 const Main = styled.div`
   background-color: white;
@@ -28,38 +27,31 @@ const InfoText = styled.h2`
 `;
 
 const RegisterBtn = styled(Link)`
-    font-size: 16px;
-    border-radius: 8px;
-    background-color: white;
-    color: black;
-    padding: 12px 16px;
+  font-size: 16px;
+  border-radius: 8px;
+  background-color: white;
+  color: black;
+  padding: 12px 16px;
 `;
-
 
 export default function Home() {
   return (
     <Main>
       <Navbar></Navbar>
 
-        <Section>
-          <InfoText>
-          Ta kontroll över dina prenumerationer med Submind
-          </InfoText>
-          <div>
+      <Section>
+        <InfoText>Ta kontroll över dina prenumerationer med Submind</InfoText>
+        <div>
           <RegisterBtn href="/register">Kom igång! - Det är gratis</RegisterBtn>
-          </div>
-        </Section>
-        <Section>
-          <InfoText>
-          Bli påmmind om när dina gratisperioder löper ut!
-          </InfoText>
-        </Section>
-        <Section>
-          <InfoText>
-          Få en överblick av din totala kostnad
-          </InfoText>
-        </Section>
+        </div>
+      </Section>
+      <Section>
+        <InfoText>Bli påmmind om när dina gratisperioder löper ut!</InfoText>
+      </Section>
+      <Section>
+        <InfoText>Få en överblick av din totala kostnad</InfoText>
+      </Section>
       <Footer></Footer>
-      </Main>
-  )
+    </Main>
+  );
 }
