@@ -46,25 +46,21 @@ justify-content:center;
 `
 
 
-
-
-
 export default function Start() {
   const router = useRouter();
-  const [user, setUser] = useState(null); 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const { data: { user } } = await supabase.auth.getUser();
-        setUser(user);
+        if (!user) {
+          router.push('/login');
+        }
       } catch (error) {
         console.error('Error fetching user data:', error.message);
-        router.push("/login");
       }
     };
     fetchUserData();
-  }, []);
-
+  }, [router]);
     return (
         <Main>
             <Navbar></Navbar>

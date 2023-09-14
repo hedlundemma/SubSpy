@@ -1,7 +1,7 @@
 "use client"
 import Navbar from '@/components/navbar/Navbar';
 import Footer from '@/components/footer/Footer';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '../../../supabase';
 import Link from 'next/link';
 import styled from "styled-components";
@@ -68,19 +68,32 @@ function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (user) {
+          router.push('/start');
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error.message);
+      }
+    };
+    fetchUserData();
+  }, [router]);
+
+
   const handleLogin = async (e) => {
     e.preventDefault();
-    
     try {
       let { data, error } = await supabase.auth.signInWithPassword({
         email: email,
         password: password
       });
-      
       if (error) {
         throw error;
       }
-      
       console.log('Logged in:', data);
       router.push("/start");
     } catch (error) {
