@@ -53,6 +53,13 @@ const StreamingForm = () => {
     const [cost, setCost] = useState('');
     const [renewalFrequency, setRenewalFrequency] = useState('monthly');
 
+    const streamingServiceOptions = [
+        { value: '', label: 'Välj en tjänst' },
+        { value: 'netflix', label: 'Netflix' },
+        { value: 'disneyPlus', label: 'Disney+' },
+        // Add more options as needed
+      ];
+
 
     const [user, setUser] = useState(null); 
     useEffect(() => {
@@ -87,9 +94,11 @@ const StreamingForm = () => {
             value={selectedService}
             onChange={(e) => setSelectedService(e.target.value)}
           >
-            <option value="">Välj en tjänst</option>
-            <option value="netflix">Netflix</option>
-            <option value="disneyPlus">Disney+</option>
+          {streamingServiceOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
           </select>
         </label>
   
