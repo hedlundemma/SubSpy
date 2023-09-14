@@ -73,7 +73,6 @@ export default function Start() {
     }
   };
 
-
   useEffect(() => {
     const fetchSubscriptions = async () => {
       const {
