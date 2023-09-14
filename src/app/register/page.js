@@ -92,7 +92,7 @@ export default function Register() {
         console.error('Registration error:', error.message);
       } else {
         console.log('Registration successful:', data);
-        router.push("/login");
+        router.push("/registerConfirmation");
       }
     } catch (error) {
       console.error('Registration error:', error.message);
