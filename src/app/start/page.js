@@ -61,6 +61,19 @@ export default function Start() {
     };
     fetchUserData();
   }, [router]);
+
+  const handleLogout = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+
+      if (error) {
+        throw error;
+      }
+      router.push('/login');
+    } catch (error) {
+      console.error('Error logging out:', error.message);
+    }
+  };
     return (
         <Main>
             <Navbar></Navbar>
@@ -73,6 +86,7 @@ export default function Start() {
                 <ButtonDiv>
                 <PrenumationButton href = "/subscription" text = "Lägg till prenumation"></PrenumationButton>
                 </ButtonDiv>
+                <button onClick={handleLogout}>Logout</button>
             
             
             </Section>
