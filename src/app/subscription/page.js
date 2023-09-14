@@ -17,6 +17,13 @@ const Section = styled.section`
   height: 525px;
   `
 
+  const Heading = styled.h2`
+  font-size: 24px;
+  font-weight: 400;
+  margin-top: 52px;
+  margin-left: 27px;
+  `
+
 function Subscription(){
 
 
@@ -25,7 +32,7 @@ function Subscription(){
         <Main>
     <Navbar></Navbar>
     <Section>
-        <h2>Lägg till prenumation</h2>
+        <Heading>Lägg till prenumeration</Heading>
         <StreamingForm></StreamingForm>
     </Section>
     <Footer></Footer>
