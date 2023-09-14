@@ -49,17 +49,17 @@ justify-content:center;
 export default function Start() {
   const router = useRouter();
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const { data: { user } } = await supabase.auth.getUser();
-        if (!user) {
+    const checkUserSession = async () => {
+      const session = supabase.auth.getSession();
+      if (session) {
+        console.log((await session).data)
+        if((await session).data.session == null)
+        {
           router.push('/login');
         }
-      } catch (error) {
-        console.error('Error fetching user data:', error.message);
       }
     };
-    fetchUserData();
+    checkUserSession();
   }, [router]);
 
   const handleLogout = async () => {

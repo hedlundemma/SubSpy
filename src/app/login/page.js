@@ -69,18 +69,23 @@ function LoginPage() {
   const [password, setPassword] = useState('');
   
 
+
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const { data: { user } } = await supabase.auth.getUser();
-        if (user) {
-          router.push('/start');
+    const checkUserSession = async () => {
+      const session = supabase.auth.getSession();
+      if (session) {
+        console.log((await session).data)
+        if((await session).data.session != null)
+        {
+          const { data: { user } } = await supabase.auth.getUser();
+          if (user) {
+            router.push('/start');
+          }
         }
-      } catch (error) {
-        console.error('Error fetching user data:', error.message);
       }
     };
-    fetchUserData();
+
+    checkUserSession();
   }, [router]);
 
 
@@ -111,7 +116,7 @@ function LoginPage() {
           <input type="email" autoComplete='email' required placeholder='Email adress' value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div>
-          <input type="password" required placeholder='Lösenord' value={password} onChange={(e) => setPassword(e.target.value)}/>
+          <input type="password" autoComplete='password' required placeholder='Lösenord' value={password} onChange={(e) => setPassword(e.target.value)}/>
         </div>
         <button type="submit">Logga in</button>
         </form>
