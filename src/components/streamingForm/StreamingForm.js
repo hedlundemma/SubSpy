@@ -94,10 +94,23 @@ const StreamingForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log("test");
     //calculate when the subscription is getting renewed
 
-    const renewDate = new Date(startDate);
+    // const renewDate = new Date(startDate);
+
+    const [dayNumber, monthNumber, yearNumber] = startDateStr.split("/");
+
+    const day = parseInt(dayNumber, 10);
+    const month = parseInt(monthNumber, 10);
+    const year = parseInt(yearNumber, 10);
+
+    const startDate = new Date(year, month - 1, day);
+
+    const renewDate = startDate.getDate();
+
+    console.log("Renew day:", renewDate);
+
     renewDate.setMonth(renewDate.getMonth() + 1);
 
     const { error } = await supabase.from("Subscriptions").insert({
@@ -109,8 +122,6 @@ const StreamingForm = () => {
     });
     console.log("förnyas:", renewDate);
   };
-
-  console.log(user);
 
   return (
     <Section>
@@ -165,7 +176,7 @@ const StreamingForm = () => {
           </select>
         </label>
 
-        <SubscrptionBtn href="/overview" onClick={handleSubmit}>
+        <SubscrptionBtn href="/overview">
           Lägg till prenumeration
         </SubscrptionBtn>
       </form>
