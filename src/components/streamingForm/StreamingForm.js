@@ -103,12 +103,11 @@ const StreamingForm = () => {
     const { error } = await supabase.from("Subscriptions").insert({
       subscription: selectedService,
       monthly_cost: cost,
-      start_date: startDate,
-      renew_date: renewDate,
+      start_date: startDate.toISOString(),
+      renew_date: renewDate.toISOString(),
       user_uuid: user.id,
     });
     console.log("förnyas:", renewDate);
-    console.log(selectedService);
   };
 
   console.log(user);
@@ -166,7 +165,7 @@ const StreamingForm = () => {
           </select>
         </label>
 
-        <SubscrptionBtn href="/overview">
+        <SubscrptionBtn href="/overview" onClick={handleSubmit}>
           Lägg till prenumeration
         </SubscrptionBtn>
       </form>
