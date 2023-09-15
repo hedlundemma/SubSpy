@@ -19,7 +19,6 @@ const Logo = styled.img`
 
 const Section = styled.section`
   height: 540px;
-  padding: 16px;
   display: flex;
   flex-direction: column;
 `;
