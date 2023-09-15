@@ -3,7 +3,7 @@ import Footer from "@/components/footer/footer";
 import UserNavbar from "@/components/userNavbar/userNavbar";
 import { supabase } from "../../../supabase";
 import styled from "styled-components";
-import PrenumationButton from "@/components/prenumationButton/prenumationButton";
+import PrenumationButton from "@/components/subscriptionButton/subscriptionButton";
 
 const Main = styled.div`
   background-color: white;
