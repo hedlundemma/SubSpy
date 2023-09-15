@@ -18,12 +18,12 @@ img{
 
 `
 
-const PrenumationButton = ({ href, text }) => {
+const SubscriptionButton = ({ href, text }) => {
   return (
     <Link href={href}>
-        <Button className="prenumation-button"><img src="/plus.svg" alt="Plus" /> {text}</Button>
+        <Button className="subscription-button"><img src="/plus.svg" alt="Plus" /> {text}</Button>
     </Link>
   );
 };
 
-export default PrenumationButton
+export default SubscriptionButton

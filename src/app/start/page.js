@@ -2,7 +2,7 @@
 import Footer from "@/components/footer/footer";
 import UserNavbar from "@/components/userNavbar/userNavbar";
 import styled from "styled-components";
-import PrenumationButton from "@/components/prenumationButton/prenumationButton";
+import PrenumationButton from "@/components/subscriptionButton/subscriptionButton";
 import { supabase } from "../../../supabase";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -11,16 +11,37 @@ import SubscriptionCard from "@/components/SubscriptionCard";
 const Main = styled.div`
   background-color: white;
   height: 850px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
 `;
 const Logo = styled.img`
   height: 116px;
   width: 88px;
 `;
-
+const InfoSection = styled.section`
+  padding-left: 24px;
+  padding-right: 24px;
+  box-sizing: border-box;
+  width: 100%;
+  p{
+    font-size: 16px;
+  }
+  h3{
+    font-size: 32px;
+    font-weight: 500;
+  }
+`;
 const Section = styled.section`
   height: 540px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  div{
+    width: 100%;
+  }
 `;
 
 const Heading = styled.h2`
@@ -48,6 +69,7 @@ export default function Start() {
   const router = useRouter();
   const [subscriptions, setSubscriptions] = useState("");
   const [user, setUser] = useState("");
+  const [totalCost, setTotalCost] = useState(0);
 
   useEffect(() => {
     const checkUserSession = async () => {
@@ -89,6 +111,24 @@ export default function Start() {
 
   let cardsComponent = null;
 
+  useEffect(() => {
+    // Ensure subscriptions is an array before processing
+    if (Array.isArray(subscriptions)) {
+      // Initialize a variable to store the total cost
+      let calculatedTotalCost = 0;
+
+      // Loop through the subscriptions and calculate the total cost
+      subscriptions.forEach((subscription) => {
+        calculatedTotalCost += subscription.monthly_cost;
+      });
+
+      // Update the state with the calculated total cost
+      setTotalCost(calculatedTotalCost);
+    }
+  }, [subscriptions]); 
+
+
+  
   if (Array.isArray(subscriptions)) {
     cardsComponent = subscriptions.map((subscription) => (
       <SubscriptionCard
@@ -102,18 +142,21 @@ export default function Start() {
   return (
     <Main>
       <UserNavbar></UserNavbar>
+      <InfoSection>
+        <p>Totalkostnad för månad:</p>
+        <h3>{totalCost} Sek</h3>
+      </InfoSection>
+        <PrenumationButton
+          href="/subscription"
+          text="Lägg till prenumation"
+        ></PrenumationButton>
       <Section>
         <div>{cardsComponent}</div>
         <Heading>Lägg till en prenumation för att komma igång!</Heading>
-        <ImageDiv>
+        {/* <ImageDiv>
           <Logo src="arrow.svg"></Logo>
-        </ImageDiv>
-        <ButtonDiv>
-          <PrenumationButton
-            href="/subscription"
-            text="Lägg till prenumation"
-          ></PrenumationButton>
-        </ButtonDiv>
+        </ImageDiv> */}
+        <ButtonDiv></ButtonDiv>
         <button onClick={handleLogout}>Logout</button>
       </Section>
       <Footer></Footer>
