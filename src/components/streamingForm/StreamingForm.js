@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "../../../supabase";
 import { useRouter } from "next/navigation";
 import styled from "styled-components";
-import { Days_One } from "next/font/google";
+import { Days_One, Stardos_Stencil } from "next/font/google";
 import Link from "next/link";
 
 const Section = styled.section`
@@ -105,19 +105,20 @@ const StreamingForm = () => {
     const month = parseInt(monthNumber, 10);
     const year = parseInt(yearNumber, 10);
 
-    const startDate = new Date(year, month - 1, day);
+    // const startDate = new Date(year, month - 1, day);
 
-    renewDate.setMonth(renewDate.getMonth() + 1);
+    // renewDate.setMonth(renewDate.getMonth() + 1);
+    const renewDate = day;
 
     console.log("Renew day:", renewDate);
 
-    renewDate.setMonth(renewDate.getMonth() + 1);
+    // renewDate.setMonth(renewDate.getMonth() + 1);
 
     const { error } = await supabase.from("Subscriptions").insert({
       subscription: selectedService,
       monthly_cost: cost,
-      start_date: startDate.toISOString(),
-      renew_date: renewDate.toISOString(),
+      start_date: startDate,
+      renew_date: startDate,
       user_uuid: user.id,
     });
     console.log("förnyas:", renewDate);
