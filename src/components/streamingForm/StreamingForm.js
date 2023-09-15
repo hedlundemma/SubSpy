@@ -118,7 +118,7 @@ const StreamingForm = () => {
       subscription: selectedService,
       monthly_cost: cost,
       start_date: startDate,
-      renew_date: startDate,
+      renew_date: renewDate,
       user_uuid: user.id,
     });
     console.log("förnyas:", renewDate);
