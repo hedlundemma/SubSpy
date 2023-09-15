@@ -46,14 +46,14 @@ const Section = styled.section`
   }
 `;
 
-const SubscrptionBtn = styled(Link)`
-  font-size: 18px;
-  border-radius: 50px;
-  background-color: black;
-  color: white;
-  padding: 12px 16px;
-  text-align: center;
-`;
+// const SubscrptionBtn = styled(Link)`
+//   font-size: 18px;
+//   border-radius: 50px;
+//   background-color: black;
+//   color: white;
+//   padding: 12px 16px;
+//   text-align: center;
+// `;
 
 const StreamingForm = () => {
   const router = useRouter();
@@ -99,7 +99,7 @@ const StreamingForm = () => {
 
     // const renewDate = new Date(startDate);
 
-    const [dayNumber, monthNumber, yearNumber] = startDateStr.split("/");
+    const [dayNumber, monthNumber, yearNumber] = startDate.split("/");
 
     const day = parseInt(dayNumber, 10);
     const month = parseInt(monthNumber, 10);
@@ -107,7 +107,7 @@ const StreamingForm = () => {
 
     const startDate = new Date(year, month - 1, day);
 
-    const renewDate = startDate.getDate();
+    renewDate.setMonth(renewDate.getMonth() + 1);
 
     console.log("Renew day:", renewDate);
 
@@ -176,9 +176,7 @@ const StreamingForm = () => {
           </select>
         </label>
 
-        <SubscrptionBtn href="/overview">
-          Lägg till prenumeration
-        </SubscrptionBtn>
+        <button href="/overview">Lägg till prenumeration</button>
       </form>
     </Section>
   );
