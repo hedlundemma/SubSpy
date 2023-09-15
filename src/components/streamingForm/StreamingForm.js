@@ -61,8 +61,6 @@ const StreamingForm = () => {
   const [startDate, setStartDate] = useState("");
   const [cost, setCost] = useState("");
   const [renewalFrequency, setRenewalFrequency] = useState("monthly");
-  const [remainingDays, setRemainingDays] = useState(null);
-  const [renewalDate, setRenewalDate] = useState(null);
 
   //array containing the options for streaming-services
   const streamingServiceOptions = [
@@ -76,26 +74,6 @@ const StreamingForm = () => {
     { value: "yearly", label: "Årligen" },
   ];
 
-  //calculate when the subscriptions renews and show how many days until that happens
-  const calculateRenewalDate = () => {
-    if (startDate && renewalFrequency) {
-      const currentDate = new Date();
-      const renewalDate = new Date(startDate);
-
-      if (renewalFrequency === "monthly") {
-        renewalDate.setMonth(renewalDate.getMonth() + 1);
-      } else if (renewalFrequency === "yearly") {
-        renewalDate.setFullYear(renewalDate.getFullYear() + 1);
-      }
-
-      const timeDifference = renewalDate - currentDate;
-      const daysRemaining = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-
-      setRenewalDate(renewalDate);
-      setRemainingDays(daysRemaining);
-    }
-  };
-
   //making sure the user is logged in, otherwise redirect to login-page
   const [user, setUser] = useState(null);
   useEffect(() => {
@@ -105,7 +83,6 @@ const StreamingForm = () => {
           data: { user },
         } = await supabase.auth.getUser();
         setUser(user);
-        calculateRenewalDate();
       } catch (error) {
         console.error("Error fetching user data:", error.message);
         router.push("/login");
@@ -118,18 +95,23 @@ const StreamingForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    //calculate when the subscription is getting renewed
+
+    const renewDate = new Date(startDate);
+    renewDate.setMonth(renewDate.getMonth() + 1);
+
     const { error } = await supabase.from("Subscriptions").insert({
       subscription: selectedService,
       monthly_cost: cost,
-      renew_date: startDate,
+      start_date: startDate,
+      renew_date: renewDate,
       user_uuid: user.id,
     });
+    console.log("förnyas:", renewDate);
+    console.log(selectedService);
   };
 
   console.log(user);
-  console.log("startDate:", startDate);
-  console.log("renewalFrequency:", renewalFrequency);
-  console.log(selectedService);
 
   return (
     <Section>
