@@ -3,7 +3,6 @@ import { supabase } from "../../../supabase";
 import { useRouter } from "next/navigation";
 import styled from "styled-components";
 import { Days_One, Stardos_Stencil } from "next/font/google";
-import Link from "next/link";
 
 const Section = styled.section`
   display: flex;
@@ -94,12 +93,10 @@ const StreamingForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("test");
+
     //calculate when the subscription is getting renewed
 
-    // const renewDate = new Date(startDate);
-
-    const [dayNumber, monthNumber, yearNumber] = startDate.split("/");
+    const [yearNumber, monthNumber, dayNumber] = startDate.split("-");
 
     const day = parseInt(dayNumber, 10);
     const month = parseInt(monthNumber, 10);
@@ -107,8 +104,7 @@ const StreamingForm = () => {
 
     // const startDate = new Date(year, month - 1, day);
 
-    // renewDate.setMonth(renewDate.getMonth() + 1);
-    const renewDate = day;
+    renewDate.setMonth(renewDate.getMonth() + 1);
 
     console.log("Renew day:", renewDate);
 
@@ -121,7 +117,6 @@ const StreamingForm = () => {
       renew_date: renewDate,
       user_uuid: user.id,
     });
-    console.log("förnyas:", renewDate);
   };
 
   return (

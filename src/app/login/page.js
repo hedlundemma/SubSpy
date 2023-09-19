@@ -96,8 +96,19 @@ function LoginPage() {
       if (error) {
         throw error;
       }
+
+      const user = data.user;
+      const firstLogin = user?.app_metadata?.firstLogin;
+
+      if (firstLogin) {
+        // Redirect to the first-time user page
+        router.push("/start");
+      } else {
+        // Redirect to the returning user page
+        router.push("/overview");
+      }
+
       console.log("Logged in:", data);
-      router.push("/start");
     } catch (error) {
       console.error("Login error:", error.message);
     }
