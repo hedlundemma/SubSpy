@@ -104,7 +104,8 @@ const StreamingForm = () => {
 
     // const startDate = new Date(year, month - 1, day);
 
-    renewDate.setMonth(renewDate.getMonth() + 1);
+    // renewDate.setMonth(renewDate.getMonth() + 1);
+    const renewDate = day;
 
     console.log("Renew day:", renewDate);
 
